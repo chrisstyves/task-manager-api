@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 
 // this just executes the script
 require('./db/mongoose')
@@ -53,6 +54,9 @@ const port = process.env.PORT
 // app.use((req, res, next) => {
 //     res.status(503).send('Sorry, we are down for maintenance. Come back soon!')
 // })
+
+// lets this API be used from remote URLs
+app.use(cors())
 
 // automatically parse incoming JSON to an object
 app.use(express.json())
