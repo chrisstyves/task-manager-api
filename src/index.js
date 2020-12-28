@@ -1,14 +1,10 @@
-const express = require('express')
-const cors = require('cors')
+const app = require('./app')
 
-// this just executes the script
-require('./db/mongoose')
-
-const userRouter = require('./routers/user')
-const taskRouter = require('./routers/task')
-
-const app = express()
 const port = process.env.PORT
+
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
+})
 
 // file upload example code
 // ------------------------
@@ -54,20 +50,6 @@ const port = process.env.PORT
 // app.use((req, res, next) => {
 //     res.status(503).send('Sorry, we are down for maintenance. Come back soon!')
 // })
-
-// lets this API be used from remote URLs
-app.use(cors())
-
-// automatically parse incoming JSON to an object
-app.use(express.json())
-
-// we refactored all these routes into their own files for maintainability
-app.use(userRouter)
-app.use(taskRouter)
-
-app.listen(port, () => {
-    console.log('Server is up on port ' + port)
-})
 
 // just messing with bcryptjs
 // const bcrypt = require('bcryptjs')
